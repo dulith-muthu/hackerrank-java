@@ -11,6 +11,7 @@ public class PlusMinus {
 
     /**
      * prints the ratios of plus minus and zero numbers in a given array.
+     *
      * @param arr list of integers can be plus minus or zero.
      */
     public static void plusMinus(List<Integer> arr) {
@@ -24,6 +25,6 @@ public class PlusMinus {
                 zero++;
             }
         }
-        System.out.printf("%.6f%n%.6f%n%.6f%n", plus/size, minus/size, zero/size);
+        System.out.printf("%.6f%n%.6f%n%.6f%n", plus / size, minus / size, zero / size);
     }
 }
