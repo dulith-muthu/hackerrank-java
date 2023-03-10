@@ -8,18 +8,18 @@ import java.util.List;
  * @see <a href="https://www.hackerrank.com/challenges/queens-attack-2/problem">hackerrank</a>
  */
 public class QueensAttackTwo {
-    public static void main(String[] args) {
-        List<List<Integer>> obs = Arrays.asList(
-            Arrays.asList(5, 5),
-            Arrays.asList(4, 2),
-            Arrays.asList(2, 3)
-        );
-        System.out.println(queensAttack(5, 3, 4, 3, obs));
-    }
-
     /**
-     * You will be given a square chess board with one queen and a number of obstacles placed on it.
-     * Determine how many squares the queen can attack.
+     * You will be given a square chess board with one queen and a number of obstacles placed on it.<br/>
+     * Determine how many squares the queen can attack.<br/><br/>
+     * Consider the position of the queen in the board and calculate the possible move distances in each direction:
+     * <ul>
+     * <li>row/column bounds</li>
+     * <li>forward/backwards diagonal bounds</li>
+     * </ul>
+     * After that loop each obstacle and determine if a particular obstacle falls
+     * in-between the bounds that you defined earlier.
+     * if so update the bounds and continue looping.<br/>
+     * Finally, calculate the possible squares that the queen can move, using the updated bounds.
      *
      * @param n         the number of rows and columns in the board.
      * @param k         the number of obstacles on the board.
@@ -28,7 +28,7 @@ public class QueensAttackTwo {
      * @param obstacles each element is an array (pair) of integers, the row and column of an obstacle.
      * @return the number of squares the queen can attack.
      */
-    public static int queensAttack(int n, int k, int r_q, int c_q, List<List<Integer>> obstacles) {
+    public int queensAttack(int n, int k, int r_q, int c_q, List<List<Integer>> obstacles) {
         int[] rowBounds = {1, n},
             colBounds = {1, n};
         int[] fwDiag_distances = {Math.min(r_q - 1, c_q - 1), Math.min(n - r_q, n - c_q)};

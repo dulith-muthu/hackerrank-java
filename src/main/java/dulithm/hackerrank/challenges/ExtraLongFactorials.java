@@ -3,22 +3,22 @@ package dulithm.hackerrank.challenges;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collector;
 
 /**
  * @author Dulith
  * @see <a href="https://www.hackerrank.com/challenges/extra-long-factorials/problem">hackerrank</a>
  */
 public class ExtraLongFactorials {
-    public static void main(String[] args) {
-        for (int i = 1; i <= 100; i++) {
-            extraLongFactorials(i);
-        }
-    }
-
-    public static void extraLongFactorials(int n) {
+    /**
+     * Returns the factorial of a given number. they can be extra long.
+     *
+     * @param n an integer where: <code>1 <= n <= 100</code>
+     * @return factorial of n as a string
+     */
+    public String extraLongFactorials(int n) {
         if (n == 1) {
-            System.out.println(1);
-            return;
+            return "1";
         }
         List<Integer> nums = new ArrayList<>();
         nums.add(1);
@@ -35,7 +35,10 @@ public class ExtraLongFactorials {
             }
         }
         Collections.reverse(nums);
-        nums.forEach(System.out::print);
-        System.out.println();
+        return nums.stream().collect(Collector.of(
+            StringBuilder::new,
+            StringBuilder::append,
+            StringBuilder::append,
+            StringBuilder::toString));
     }
 }

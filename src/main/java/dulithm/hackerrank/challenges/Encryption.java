@@ -9,12 +9,6 @@ import java.util.stream.IntStream;
  * @see <a href="https://www.hackerrank.com/challenges/encryption/problem?isFullScreen=false">hackerrank</a>
  */
 public class Encryption {
-    public static void main(String[] args) {
-        System.out.println(encryption("haveaniceday"));
-        System.out.println(encryption("feedthedog"));
-        System.out.println(encryption("abcdefghi"));
-    }
-
     /**
      * <p>An English text needs to be encrypted using the following encryption scheme.<br/>
      * First, the spaces are removed from the text. Let L be the length of this text.<br/>
@@ -24,7 +18,7 @@ public class Encryption {
      * @param s plaintext
      * @return ciphertext
      */
-    public static String encryption(String s) {
+    public String encryption(String s) {
         String spaceRemoved = s.replaceAll(" ", "");
         if (spaceRemoved.length() == 1) return spaceRemoved;
         int len = spaceRemoved.length(), ceil = 1;

@@ -7,16 +7,13 @@ import java.util.List;
  * @see <a href="https://www.hackerrank.com/challenges/one-week-preparation-kit-diagonal-difference/problem">hackerrank</a>
  */
 public class DiagonalDifference {
-    public static void main(String[] args) {
-        List<List<Integer>> matrix = List.of(
-            List.of(1, 2, 3),
-            List.of(4, 5, 6),
-            List.of(9, 8, 9)
-        );
-        System.out.println(diagonalDifference(matrix));
-    }
-
-    public static int diagonalDifference(List<List<Integer>> arr) {
+    /**
+     * Given a square matrix, calculate the absolute difference between the sums of its diagonals.
+     *
+     * @param arr square matrix as a 2d list. <code>-100 <= arr[i] <= 100</code>
+     * @return diagonal difference positive int
+     */
+    public int diagonalDifference(List<List<Integer>> arr) {
         final int n = arr.size();
         int diff = 0;
         for (int i = 0; i < n; i++) {

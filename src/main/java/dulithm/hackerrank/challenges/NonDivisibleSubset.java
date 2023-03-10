@@ -10,24 +10,23 @@ import java.util.Optional;
  * @see <a href="https://www.hackerrank.com/challenges/non-divisible-subset/problem">hackerrank</a>
  */
 public class NonDivisibleSubset {
-    public static void main(String[] args) {
-        System.out.println(nonDivisibleSubset(4, List.of(19, 10, 12, 24, 25, 22)));
-        System.out.println(nonDivisibleSubset(3, List.of(1, 7, 2, 4)));
-    }
-
     /**
-     * sum of two numbers A, B is divisible by K if
-     * (A % K) + (B % K) = K or 0
-     * using this we can solve
-     * these sets can be considered as pairs, and we can take larger set from each pair.
-     * we can only take 1 number form the set of numbers where (X % K) = 0
-     * if K is even we can only take 1 number form the set of numbers where (X % K) = K / 2
+     * Given a set of distinct integers, print the size of a maximal subset of <code>S</code>
+     * where the sum of any 2 numbers in <code>S'</code> is not evenly divisible by <code>K</code>.<br/>
+     *
+     * <small>(Had to get help from the forum)</small><br/><br/>
+     * Sum of two numbers A, B is divisible by K if
+     * <pre>(A % K) + (B % K) = K or 0</pre>
+     * using this we can solve.<br/>
+     * These sets can be considered as pairs, and we can take larger set from each pair.<br/>
+     * we can only take 1 number form the set of numbers where <code>(X % K) = 0</code>.<br/>
+     * if <code>K</code> is even we can only take 1 number form the set of numbers where <code>(X % K) = K / 2</code>
      *
      * @param k divider
      * @param s distinct integer list
      * @return resultant set length
      */
-    public static int nonDivisibleSubset(int k, List<Integer> s) {
+    public int nonDivisibleSubset(int k, List<Integer> s) {
         int maxSetLen = 0;
         Map<Integer, Integer> remainders = new HashMap<>();
         for (int val : s) {
