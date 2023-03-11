@@ -21,6 +21,6 @@ public class LonelyIntegerTest {
 
     @Test
     public void usingXOR() {
-        assertEquals(4, solution.betterLonelyInteger(List.of(1, 2, 3, 4, 3, 2, 1)));
+        assertEquals(4, solution.bestLonelyInteger(List.of(1, 2, 3, 4, 3, 2, 1)));
     }
 }

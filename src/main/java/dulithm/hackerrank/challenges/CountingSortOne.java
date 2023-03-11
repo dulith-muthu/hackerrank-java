@@ -17,7 +17,7 @@ public class CountingSortOne {
      */
     public List<Integer> countingSort(List<Integer> arr) {
         List<Integer> zeros = new ArrayList<>(Collections.nCopies(100, 0));
-        return arr.stream().reduce(zeros, (result, i) -> {
+        return arr.parallelStream().reduce(zeros, (result, i) -> {
             result.set(i, result.get(i) + 1);
             return result;
         }, (a, b) -> a);
