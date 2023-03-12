@@ -44,14 +44,14 @@ public class MatrixLayerRotation {
     }
 
     /**
-     * Returns the main matrix <code>(i, j)</i,></code> position vector for a given number of rotations in
+     * Returns the main matrix <code>(i, j)</i,></code> position vector for a distance from loop starting point in
      * a rotation loop.
      * eg: for a <code>4 x 5</code> matrix consider most outer rotation loop:<ul>
-     * <li><code>lm</code> is 4 (4 rows in the outer loop)</li>
-     * <li><code>ln</code> is 5 (5 columns in the outer loop)</li>
+     * <li><code>lm</code> is 4 (4 rows in the loop)</li>
+     * <li><code>ln</code> is 5 (5 columns in the loop)</li>
      * <li><code>l</code> is 0 (0<sup>th</sup> loop is the most outer loop)</li>
      * <li><code>loopEl</code> is 14, we can count 14 elements in the outer loop</li>
-     * <li><code>d</code> lets assume distance is 9, loop start point is <code>(0, 0)</code></li>
+     * <li><code>d</code> lets assume distance is 23, loop start point is <code>(0, 0)</code></li>
      * <li>outer loop distance calculation path:<pre>
      *     (0,0) <- (0,1) <- (0,2) <- (0,3) <- (0,4)
      *       v                                   ^
@@ -60,6 +60,8 @@ public class MatrixLayerRotation {
      *     (2,0)    (2,1)    (2,2)    (2,3)    (2,4)
      *       v                                   ^
      *     (3,0) -> (3,1) -> (3,2) -> (3,3) -> (3,4)</pre></li>
+     * <li>Next, Calculate effective distance, since multiples of distance of a complete loop will land on the
+     * same position: <code>effD = d % loopEl = 23 % 14 = 9</code></li>
      * <li>if you count 9 elements from starting element <code>(0, 0)</code> along the most outer loop,
      * you will end up in the element <code>(1,4)</code></li>
      * </ul>
@@ -72,20 +74,20 @@ public class MatrixLayerRotation {
      * @return <code>(i, j)</code> position vector
      */
     public int[] getPosition(int lm, int ln, int l, int loopEl, int d) {
-        int effR = d % (loopEl);
+        int effD = d % loopEl;
         int[] ij = new int[]{0, 0};
-        if (effR < lm) {
-            ij[0] = l + effR;
+        if (effD < lm) {
+            ij[0] = l + effD;
             ij[1] = l;
-        } else if (effR < lm + ln - 1) {
+        } else if (effD < lm + ln - 1) {
             ij[0] = l + lm - 1;
-            ij[1] = l + effR - lm + 1;
-        } else if (effR < ((lm << 1) + ln - 2)) {
-            ij[0] = l - effR + (lm << 1) + ln - 3;
+            ij[1] = l + effD - lm + 1;
+        } else if (effD < ((lm << 1) + ln - 2)) {
+            ij[0] = l - effD + (lm << 1) + ln - 3;
             ij[1] = l + ln - 1;
         } else {
             ij[0] = l;
-            ij[1] = l - effR + (lm << 1) + (ln << 1) - 4;
+            ij[1] = l - effD + (lm << 1) + (ln << 1) - 4;
         }
         return ij;
     }
